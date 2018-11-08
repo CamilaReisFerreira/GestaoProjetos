@@ -1,0 +1,34 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="~/css/site.css" rel="stylesheet" type="text/css" />
+    <link href="~/lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <script src="~/Scripts/modernizr-2.6.2.js"></script>
+    <title>@ViewData["Title"] - GestaoProjetos</title>
+    @RenderSection("styles", false)
+</head>
+<body>
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12 col-sm-2 col-md-3 bg-success">
+                    <ul class="nav nav-pills nav-stacked">
+                        <li id="liCargos" role="presentation">@Html.ActionLink("Cargos", "Index", "Cargo", new { area = "" }, null)</li>
+                        <li id="liCargos" role="presentation">@Html.ActionLink("Colaboradores", "Index", "Colaborador", new { area = "" }, null)</li>
+                        <li id="liCargos" role="presentation">@Html.ActionLink("Projetos", "Index", "Projeto", new { area = "" }, null)</li>
+                        <li id="liCargos" role="presentation">@Html.ActionLink("Tarefas", "Index", "Tarefa", new { area = "" }, null)</li>
+                    </ul>
+                </div>
+                <div class="col-xs-12 col-sm-10 col-md-9">
+                    <br />
+                    @RenderBody()
+                </div>
+            </div>
+        </div>
+
+    <script src="@Url.Content("~/lib/jquery/dist/jquery.js")"></script>
+    <script src="@Url.Content("~/lib/bootstrap/dist/js/bootstrap.js")"></script>
+    @RenderSection("scripts", required: false)
+</body>
+</html>
