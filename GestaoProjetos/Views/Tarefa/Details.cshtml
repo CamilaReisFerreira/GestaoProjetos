@@ -1,0 +1,54 @@
+﻿@model GestaoProjetos.DTO.Tarefa
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Tarefa</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Id_Tarefa)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Id_Tarefa)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Descricao)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Descricao)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Observacao)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Observacao)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Situacao)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Situacao)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Data_Abertura)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Data_Abertura)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Data_Entrega)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Data_Entrega)
+        </dd>
+    </dl>
+</div>
+<div>
+    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+    <a asp-action="Index">Back to List</a>
+</div>

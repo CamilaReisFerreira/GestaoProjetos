@@ -1,0 +1,58 @@
+﻿@model GestaoProjetos.DTO.Tarefa
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Tarefa</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Id_Tarefa)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Id_Tarefa)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Descricao)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Descricao)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Observacao)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Observacao)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Situacao)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Situacao)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Data_Abertura)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Data_Abertura)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Data_Entrega)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Data_Entrega)
+        </dd>
+    </dl>
+    
+    <form asp-action="Delete">
+        @Html.AntiForgeryToken()
+        @Html.HiddenFor(model => model.Id_Tarefa)
+        <input type="submit" value="Delete" class="btn btn-default" /> |
+        <a asp-action="Index">Back to List</a>
+    </form>
+</div>

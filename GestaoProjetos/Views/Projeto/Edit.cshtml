@@ -1,0 +1,58 @@
+﻿@model GestaoProjetos.DTO.Projeto
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h2>Edit</h2>
+
+<h4>Projeto</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Id_Projeto" class="control-label"></label>
+                <input asp-for="Id_Projeto" class="form-control" />
+                <span asp-validation-for="Id_Projeto" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Razao_Social" class="control-label"></label>
+                <input asp-for="Razao_Social" class="form-control" />
+                <span asp-validation-for="Razao_Social" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CNPJ" class="control-label"></label>
+                <input asp-for="CNPJ" class="form-control" />
+                <span asp-validation-for="CNPJ" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Horas_Projeto" class="control-label"></label>
+                <input asp-for="Horas_Projeto" class="form-control" />
+                <span asp-validation-for="Horas_Projeto" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Data_Inicial_Contrato" class="control-label"></label>
+                <input asp-for="Data_Inicial_Contrato" class="form-control" />
+                <span asp-validation-for="Data_Inicial_Contrato" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Observacoes" class="control-label"></label>
+                <input asp-for="Observacoes" class="form-control" />
+                <span asp-validation-for="Observacoes" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

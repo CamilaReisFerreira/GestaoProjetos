@@ -1,4 +1,5 @@
 ﻿using GestaoProjetos.DAL.Context;
+using GestaoProjetos.DAL.Entidades;
 using GestaoProjetos.DAL.Interfaces;
 using GestaoProjetos.DTO;
 using System.Collections.Generic;
@@ -17,22 +18,63 @@ namespace GestaoProjetos.DAL.Persistencia
 
         public void Add(Tarefa item)
         {
-            throw new System.NotImplementedException();
+            var tarefa = new TarefaDAO
+            {
+                Descricao = item.Descricao,
+                Observacao = item.Observacao,
+                Situacao = item.Situacao,
+                Data_Abertura = item.Data_Abertura,
+                Data_Entrega = item.Data_Entrega,
+                Projeto = item.Projeto != null ? new ProjetoDAO
+                {
+                    Id_Projeto = item.Projeto.Id_Projeto,
+                    Razao_Social = item.Projeto.Razao_Social,
+                    CNPJ = item.Projeto.CNPJ,
+                    Horas_Projeto = item.Projeto.Horas_Projeto,
+                    Data_Inicial_Contrato = item.Projeto.Data_Inicial_Contrato,
+                    Observacoes = item.Projeto.Observacoes
+                } : null,
+            };
+
+            _context.Tarefas.Add(tarefa);
+            _context.SaveChanges();
         }
 
         public void Delete(long Id)
         {
-            throw new System.NotImplementedException();
+            TarefaDAO tarefa = _context.Tarefas.FirstOrDefault(x => x.Id_Tarefa == Id);
+
+            _context.Tarefas.Remove(tarefa);
+            _context.SaveChanges();
         }
 
         public Tarefa GetTarefa(long Id)
         {
-            throw new System.NotImplementedException();
+            TarefaDAO tarefa = _context.Tarefas.Find(Id);
+            return tarefa != null ?
+                new Tarefa
+                {
+                    Id_Tarefa = tarefa.Id_Tarefa,
+                    Descricao = tarefa.Descricao,
+                    Observacao = tarefa.Observacao,
+                    Situacao = tarefa.Situacao,
+                    Data_Abertura = tarefa.Data_Abertura,
+                    Data_Entrega = tarefa.Data_Entrega,
+                    Projeto = tarefa.Projeto != null ? new Projeto
+                    {
+                        Id_Projeto = tarefa.Projeto.Id_Projeto,
+                        Razao_Social = tarefa.Projeto.Razao_Social,
+                        CNPJ = tarefa.Projeto.CNPJ,
+                        Horas_Projeto = tarefa.Projeto.Horas_Projeto,
+                        Data_Inicial_Contrato = tarefa.Projeto.Data_Inicial_Contrato,
+                        Observacoes = tarefa.Projeto.Observacoes
+                    } : null,
+                } : null;
         }
 
         public IList<Tarefa> ListarTarefas()
         {
-            List<Tarefa> tarefas =
+            List<Tarefa> tarefa =
             (from o in _context.Tarefas
              orderby o.Descricao
              select new Tarefa()
@@ -54,12 +96,28 @@ namespace GestaoProjetos.DAL.Persistencia
                  } : null,
                 }).ToList();
 
-            return tarefas;
+            return tarefa;
         }
 
         public void Update(Tarefa item)
         {
-            throw new System.NotImplementedException();
+            TarefaDAO tarefa = _context.Tarefas.FirstOrDefault(x => x.Id_Tarefa == item.Id_Tarefa);
+            tarefa.Descricao = item.Descricao;
+            tarefa.Observacao = item.Observacao;
+            tarefa.Situacao = item.Situacao;
+            tarefa.Data_Abertura = item.Data_Abertura;
+            tarefa.Data_Entrega = item.Data_Entrega;
+            tarefa.Projeto = item.Projeto != null ? new ProjetoDAO
+            {
+                Id_Projeto = item.Projeto.Id_Projeto,
+                Razao_Social = item.Projeto.Razao_Social,
+                CNPJ = item.Projeto.CNPJ,
+                Horas_Projeto = item.Projeto.Horas_Projeto,
+                Data_Inicial_Contrato = item.Projeto.Data_Inicial_Contrato,
+                Observacoes = item.Projeto.Observacoes
+            } : null;
+
+            _context.SaveChanges();
         }
     }
 }

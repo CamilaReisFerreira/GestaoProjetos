@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using GestaoProjetos.DAL.Interfaces;
+using GestaoProjetos.DTO;
 using Microsoft.AspNetCore.Mvc;
 
 namespace GestaoProjetos.Controllers
@@ -19,6 +20,85 @@ namespace GestaoProjetos.Controllers
         public IActionResult Index()
         {
             return View(ColabRepo.ListarColaboradores());
+        }
+
+        public IActionResult Create()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Create(Colaborador colaborador)
+        {
+            ColabRepo.Add(colaborador);
+            return RedirectToAction("Index");
+        }
+        public IActionResult Edit(long? id)
+        {
+            if (id == null)
+            {
+                BadRequest();
+            }
+            Colaborador colaborador = ColabRepo.GetColaborador(id.Value);
+            if (colaborador == null)
+            {
+                NotFound();
+            }
+            return View(colaborador);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Edit(Colaborador colaborador)
+        {
+            if (ModelState.IsValid)
+            {
+                ColabRepo.Update(colaborador);
+                return RedirectToAction("Index");
+            }
+            return View(colaborador);
+        }
+
+        public IActionResult Delete(long? id)
+        {
+            if (id == null)
+            {
+                BadRequest();
+            }
+            Colaborador colaborador = ColabRepo.GetColaborador(id.Value);
+            if (colaborador == null)
+            {
+                NotFound();
+            }
+            return View(colaborador);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Delete(Colaborador colaborador)
+        {
+            Colaborador colab = ColabRepo.GetColaborador(colaborador.Id_Colaborador);
+            if (colab != null)
+            {
+                ColabRepo.Delete(colaborador.Id_Colaborador);
+                TempData["Message"] = "Colaborador " + colab.Nome + " foi removido";
+            }
+            return RedirectToAction("Index");
+        }
+
+        public IActionResult Details(long? id)
+        {
+            if (id == null)
+            {
+                return BadRequest();
+            }
+            Colaborador colaborador = ColabRepo.GetColaborador(id.Value);
+            if (colaborador == null)
+            {
+                return NotFound();
+            }
+            return View(colaborador);
         }
     }
 }
