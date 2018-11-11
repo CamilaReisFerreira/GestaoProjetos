@@ -12,6 +12,8 @@ namespace GestaoProjetos.DAL.Entidades
         [Key]
         public long Id_Colaborador { get; set; }
         public string Nome { get; set; }
+        public long? CargoId_Cargo { get; set; }
+
         public CargoDAO Cargo { get; set; }
     }
 }

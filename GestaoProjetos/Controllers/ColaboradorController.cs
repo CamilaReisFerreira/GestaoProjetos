@@ -5,16 +5,19 @@ using System.Threading.Tasks;
 using GestaoProjetos.DAL.Interfaces;
 using GestaoProjetos.DTO;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace GestaoProjetos.Controllers
 {
     public class ColaboradorController : Controller
     {
         public IColaboradorDAL ColabRepo { get; set; }
+        public ICargoDAL CargoRepo { get; set; }
 
-        public ColaboradorController(IColaboradorDAL _repo)
+        public ColaboradorController(IColaboradorDAL _repo, ICargoDAL _repoCargo)
         {
             ColabRepo = _repo;
+            CargoRepo = _repoCargo;
         }
 
         public IActionResult Index()
@@ -24,6 +27,7 @@ namespace GestaoProjetos.Controllers
 
         public IActionResult Create()
         {
+            ViewBag.Cargos = CargoRepo.ListarCargos();
             return View();
         }
 
@@ -45,6 +49,7 @@ namespace GestaoProjetos.Controllers
             {
                 NotFound();
             }
+            ViewBag.Cargos = CargoRepo.ListarCargos();
             return View(colaborador);
         }
 

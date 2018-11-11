@@ -20,13 +20,10 @@ namespace GestaoProjetos.DAL.Persistencia
         {
             var colaborador = new ColaboradorDAO
             {
-                Nome = item.Nome,
-                Cargo = item.Cargo != null ? new CargoDAO
-                {
-                    Id_Cargo = item.Cargo.Id_Cargo,
-                    Descricao = item.Cargo.Descricao
-                } : null
+                Nome = item.Nome
             };
+            if (item.Cargo != null)
+                colaborador.CargoId_Cargo = item.Cargo.Id_Cargo;
 
             _context.Colaboradores.Add(colaborador);
             _context.SaveChanges();
@@ -43,14 +40,15 @@ namespace GestaoProjetos.DAL.Persistencia
         public Colaborador GetColaborador(long Id)
         {
             ColaboradorDAO colaborador = _context.Colaboradores.Find(Id);
+            var cargo = colaborador.CargoId_Cargo != null ? _context.Cargos.Find(colaborador.CargoId_Cargo) : null;
             return colaborador != null ?
                 new Colaborador {
                     Id_Colaborador = colaborador.Id_Colaborador,
                     Nome = colaborador.Nome,
-                    Cargo = colaborador.Cargo != null ? new Cargo
+                    Cargo = cargo != null ? new Cargo
                     {
-                        Id_Cargo = colaborador.Cargo.Id_Cargo,
-                        Descricao = colaborador.Cargo.Descricao
+                        Id_Cargo = cargo.Id_Cargo,
+                        Descricao = cargo.Descricao
                     } : null,
                 } : null;
         }
@@ -78,11 +76,8 @@ namespace GestaoProjetos.DAL.Persistencia
         {
             ColaboradorDAO colaborador = _context.Colaboradores.FirstOrDefault(x => x.Id_Colaborador == item.Id_Colaborador);
             colaborador.Nome = item.Nome;
-            colaborador.Cargo = item.Cargo != null ? new CargoDAO
-            {
-                Id_Cargo = item.Cargo.Id_Cargo,
-                Descricao = item.Cargo.Descricao
-            } : null;
+            if (item.Cargo != null)
+                colaborador.CargoId_Cargo = item.Cargo.Id_Cargo;
 
             _context.SaveChanges();
         }

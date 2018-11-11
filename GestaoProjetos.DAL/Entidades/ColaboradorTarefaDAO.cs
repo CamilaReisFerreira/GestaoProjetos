@@ -11,8 +11,11 @@ namespace GestaoProjetos.DAL.Entidades
     {
         [Key]
         public long ID_ColaboradorTarefa { get; set; }
+        public long? ColaboradorId_Colaborador { get; set; }
+        public long? TarefaId_Tarefa { get; set; }
+        public double Horas_Estimadas { get; set; }
+
         public ColaboradorDAO Colaborador { get; set; }
         public TarefaDAO Tarefa { get; set; }
-        public double Horas_Estimadas { get; set; }
     }
 }

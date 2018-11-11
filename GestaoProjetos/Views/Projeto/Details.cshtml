@@ -1,10 +1,10 @@
 ﻿@model GestaoProjetos.DTO.Projeto
 
 @{
-    ViewData["Title"] = "Details";
+    ViewData["Title"] = "Projetos";
 }
 
-<h2>Details</h2>
+<h2>Detalhes</h2>
 
 <div>
     <h4>Projeto</h4>
@@ -49,6 +49,6 @@
     </dl>
 </div>
 <div>
-    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
-    <a asp-action="Index">Back to List</a>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id_Projeto }) |
+    <a asp-action="Index">Voltar para a listagem</a>
 </div>

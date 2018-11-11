@@ -1,13 +1,13 @@
 ﻿@model IEnumerable<GestaoProjetos.DTO.Projeto>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Projetos";
 }
 
-<h2>Index</h2>
+<h2>Projetos</h2>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Create">Novo</a>
 </p>
 <table class="table">
     <thead>
@@ -55,9 +55,9 @@
                 @Html.DisplayFor(modelItem => item.Observacoes)
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.Id_Projeto }) |
-                @Html.ActionLink("Details", "Details", new { id = item.Id_Projeto }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.Id_Projeto })
+                @Html.ActionLink("Editar", "Edit", new { id = item.Id_Projeto }) |
+                @Html.ActionLink("Detalhes", "Details", new { id = item.Id_Projeto }) |
+                @Html.ActionLink("Excluir", "Delete", new { id = item.Id_Projeto })
             </td>
         </tr>
 }

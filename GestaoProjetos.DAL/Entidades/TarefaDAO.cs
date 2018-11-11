@@ -16,6 +16,8 @@ namespace GestaoProjetos.DAL.Entidades
         public char Situacao { get; set; }
         public DateTime Data_Abertura { get; set; }
         public DateTime Data_Entrega { get; set; }
+        public long? ProjetoId_Projeto { get; set; }
+
         public ProjetoDAO Projeto { get; set; }
     }
 }
