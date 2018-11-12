@@ -12,9 +12,12 @@ namespace GestaoProjetos.Controllers
     {
         public ITarefaDAL TarefaRepo { get; set; }
 
-        public TarefaController(ITarefaDAL _repo)
+        public IProjetoDAL ProjetoRepo { get; set; }
+
+        public TarefaController(ITarefaDAL _repo, IProjetoDAL _repoProjeto)
         {
             TarefaRepo = _repo;
+            ProjetoRepo = _repoProjeto;
         }
 
         public IActionResult Index()
@@ -24,6 +27,7 @@ namespace GestaoProjetos.Controllers
 
         public IActionResult Create()
         {
+            ViewBag.Projetos = ProjetoRepo.ListarProjetos();
             return View();
         }
 
@@ -45,6 +49,7 @@ namespace GestaoProjetos.Controllers
             {
                 NotFound();
             }
+            ViewBag.Projetos = ProjetoRepo.ListarProjetos();
             return View(tarefa);
         }
 

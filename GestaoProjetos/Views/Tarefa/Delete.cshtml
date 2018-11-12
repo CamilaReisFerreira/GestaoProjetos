@@ -32,7 +32,7 @@
             @Html.DisplayNameFor(model => model.Situacao)
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.Situacao)
+            @Html.DisplayFor(model => model.Situacao_Exibir)
         </dd>
         <dt>
             @Html.DisplayNameFor(model => model.Data_Abertura)
@@ -45,6 +45,12 @@
         </dt>
         <dd>
             @Html.DisplayFor(model => model.Data_Entrega)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Projeto)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Projeto.Razao_Social)
         </dd>
     </dl>
     

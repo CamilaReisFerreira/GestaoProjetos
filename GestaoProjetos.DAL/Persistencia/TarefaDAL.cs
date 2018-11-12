@@ -24,17 +24,10 @@ namespace GestaoProjetos.DAL.Persistencia
                 Observacao = item.Observacao,
                 Situacao = item.Situacao,
                 Data_Abertura = item.Data_Abertura,
-                Data_Entrega = item.Data_Entrega,
-                Projeto = item.Projeto != null ? new ProjetoDAO
-                {
-                    Id_Projeto = item.Projeto.Id_Projeto,
-                    Razao_Social = item.Projeto.Razao_Social,
-                    CNPJ = item.Projeto.CNPJ,
-                    Horas_Projeto = item.Projeto.Horas_Projeto,
-                    Data_Inicial_Contrato = item.Projeto.Data_Inicial_Contrato,
-                    Observacoes = item.Projeto.Observacoes
-                } : null,
+                Data_Entrega = item.Data_Entrega
             };
+            if (item.Projeto != null)
+                tarefa.ProjetoId_Projeto = item.Projeto.Id_Projeto;
 
             _context.Tarefas.Add(tarefa);
             _context.SaveChanges();
@@ -51,6 +44,7 @@ namespace GestaoProjetos.DAL.Persistencia
         public Tarefa GetTarefa(long Id)
         {
             TarefaDAO tarefa = _context.Tarefas.Find(Id);
+            var projeto = tarefa.ProjetoId_Projeto != null ? _context.Projetos.Find(tarefa.ProjetoId_Projeto) : null;
             return tarefa != null ?
                 new Tarefa
                 {
@@ -60,14 +54,14 @@ namespace GestaoProjetos.DAL.Persistencia
                     Situacao = tarefa.Situacao,
                     Data_Abertura = tarefa.Data_Abertura,
                     Data_Entrega = tarefa.Data_Entrega,
-                    Projeto = tarefa.Projeto != null ? new Projeto
+                    Projeto = projeto != null ? new Projeto
                     {
-                        Id_Projeto = tarefa.Projeto.Id_Projeto,
-                        Razao_Social = tarefa.Projeto.Razao_Social,
-                        CNPJ = tarefa.Projeto.CNPJ,
-                        Horas_Projeto = tarefa.Projeto.Horas_Projeto,
-                        Data_Inicial_Contrato = tarefa.Projeto.Data_Inicial_Contrato,
-                        Observacoes = tarefa.Projeto.Observacoes
+                        Id_Projeto = projeto.Id_Projeto,
+                        Razao_Social = projeto.Razao_Social,
+                        CNPJ = projeto.CNPJ,
+                        Horas_Projeto = projeto.Horas_Projeto,
+                        Data_Inicial_Contrato = projeto.Data_Inicial_Contrato,
+                        Observacoes = projeto.Observacoes
                     } : null,
                 } : null;
         }
@@ -107,15 +101,8 @@ namespace GestaoProjetos.DAL.Persistencia
             tarefa.Situacao = item.Situacao;
             tarefa.Data_Abertura = item.Data_Abertura;
             tarefa.Data_Entrega = item.Data_Entrega;
-            tarefa.Projeto = item.Projeto != null ? new ProjetoDAO
-            {
-                Id_Projeto = item.Projeto.Id_Projeto,
-                Razao_Social = item.Projeto.Razao_Social,
-                CNPJ = item.Projeto.CNPJ,
-                Horas_Projeto = item.Projeto.Horas_Projeto,
-                Data_Inicial_Contrato = item.Projeto.Data_Inicial_Contrato,
-                Observacoes = item.Projeto.Observacoes
-            } : null;
+            if (item.Projeto != null)
+                tarefa.ProjetoId_Projeto = item.Projeto.Id_Projeto;
 
             _context.SaveChanges();
         }

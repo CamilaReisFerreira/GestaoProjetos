@@ -19,16 +19,13 @@
                 @Html.DisplayNameFor(model => model.Descricao)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Observacao)
-            </th>
-            <th>
                 @Html.DisplayNameFor(model => model.Situacao)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Data_Abertura)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Data_Entrega)
+                @Html.DisplayNameFor(model => model.Projeto)
             </th>
             <th></th>
         </tr>
@@ -43,16 +40,13 @@
                 @Html.DisplayFor(modelItem => item.Descricao)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Observacao)
-            </td>
-            <td>
                 @Html.DisplayFor(modelItem => item.Situacao_Exibir)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Data_Abertura)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Data_Entrega)
+                @Html.DisplayFor(modelItem => item.Projeto.Razao_Social)
             </td>
             <td>
                 @Html.ActionLink("Editar", "Edit", new { id = item.Id_Tarefa }) |

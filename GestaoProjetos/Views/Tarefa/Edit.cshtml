@@ -13,7 +13,7 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="Id_Tarefa" class="control-label"></label>
-                <input asp-for="Id_Tarefa" class="form-control" readonly/>
+                <input asp-for="Id_Tarefa" class="form-control" readonly />
                 <span asp-validation-for="Id_Tarefa" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -28,7 +28,14 @@
             </div>
             <div class="form-group">
                 <label asp-for="Situacao" class="control-label"></label>
-                <input asp-for="Situacao" class="form-control" />
+                <select asp-for="Situacao" class="form-control">
+                    <option value="A">Aguardando</option>
+                    <option value="D">Desenvolvimento</option>
+                    <option value="E">Encerrada</option>
+                    <option value="I">Iniciada</option>
+                    <option value="P">Pendente</option>
+                    <option value="T">Testes</option>
+                </select>
                 <span asp-validation-for="Situacao" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -40,6 +47,12 @@
                 <label asp-for="Data_Entrega" class="control-label"></label>
                 <input asp-for="Data_Entrega" class="form-control" />
                 <span asp-validation-for="Data_Entrega" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Projeto" class="control-label"></label>
+                <select asp-for="Projeto.Id_Projeto" class="form-control"
+                        asp-items="@(new SelectList(ViewBag.Projetos,"Id_Projeto","Razao_Social"))"></select>
+                <span asp-validation-for="Projeto.Id_Projeto" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <input type="submit" value="Salvar" class="btn btn-default" />
