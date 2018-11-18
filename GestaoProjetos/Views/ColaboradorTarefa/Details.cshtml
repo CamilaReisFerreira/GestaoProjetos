@@ -1,0 +1,30 @@
+﻿@model GestaoProjetos.DTO.ColaboradorTarefa
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>ColaboradorTarefa</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.ID_ColaboradorTarefa)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ID_ColaboradorTarefa)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Horas_Estimadas)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Horas_Estimadas)
+        </dd>
+    </dl>
+</div>
+<div>
+    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+    <a asp-action="Index">Back to List</a>
+</div>

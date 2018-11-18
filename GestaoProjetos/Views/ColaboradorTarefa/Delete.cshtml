@@ -1,0 +1,32 @@
+﻿@model GestaoProjetos.DTO.ColaboradorTarefa
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>ColaboradorTarefa</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.ID_ColaboradorTarefa)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ID_ColaboradorTarefa)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Horas_Estimadas)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Horas_Estimadas)
+        </dd>
+    </dl>
+    
+    <form asp-action="Delete">
+        <input type="submit" value="Delete" class="btn btn-default" /> |
+        <a asp-action="Index">Back to List</a>
+    </form>
+</div>

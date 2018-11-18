@@ -10,7 +10,9 @@ namespace GestaoProjetos.DTO
         [Display(Name = "Código")]
         public long Id_Projeto { get; set; }
         [Display(Name = "Razão Social")]
+        [Required]
         public string Razao_Social { get; set; }
+        [Required]
         public string CNPJ { get; set; }
         [Display(Name = "Quantidade de Horas")]
         public double Horas_Projeto { get; set; }

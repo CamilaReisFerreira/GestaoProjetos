@@ -13,7 +13,7 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="Id_Projeto" class="control-label"></label>
-                <input asp-for="Id_Projeto" class="form-control" readonly/>
+                <input asp-for="Id_Projeto" class="form-control" readonly />
                 <span asp-validation-for="Id_Projeto" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -24,7 +24,7 @@
             <div class="form-group">
                 <label asp-for="CNPJ" class="control-label"></label>
                 <input asp-for="CNPJ" class="form-control" />
-                <span asp-validation-for="CNPJ" class="text-danger"></span>
+                <span asp-validation-for="CNPJ" class="text-danger">@Html.ValidationMessage("CustomError")</span>
             </div>
             <div class="form-group">
                 <label asp-for="Horas_Projeto" class="control-label"></label>
