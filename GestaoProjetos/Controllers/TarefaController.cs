@@ -42,12 +42,12 @@ namespace GestaoProjetos.Controllers
         {
             if (id == null)
             {
-                BadRequest();
+                return BadRequest();
             }
             Tarefa tarefa = TarefaRepo.GetTarefa(id.Value);
             if (tarefa == null)
             {
-                NotFound();
+                return NotFound();
             }
             ViewBag.Projetos = ProjetoRepo.ListarProjetos();
             return View(tarefa);
@@ -69,12 +69,12 @@ namespace GestaoProjetos.Controllers
         {
             if (id == null)
             {
-                BadRequest();
+                return BadRequest();
             }
             Tarefa tarefa = TarefaRepo.GetTarefa(id.Value);
             if (tarefa == null)
             {
-                NotFound();
+                return NotFound();
             }
             return View(tarefa);
         }

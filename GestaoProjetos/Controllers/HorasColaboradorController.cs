@@ -45,12 +45,12 @@ namespace GestaoProjetos.Controllers
         {
             if (id == null)
             {
-                BadRequest();
+                return BadRequest();
             }
             HorasColaborador horasColab = HorasColabRepo.GetHorasColaborador(id.Value);
             if (horasColab == null)
             {
-                NotFound();
+                return NotFound();
             }
             ViewBag.Colaboradores = ColabRepo.ListarColaboradores();
             ViewBag.Tarefas = TarefaRepo.ListarTarefas();
@@ -73,12 +73,12 @@ namespace GestaoProjetos.Controllers
         {
             if (id == null)
             {
-                BadRequest();
+                return BadRequest();
             }
             HorasColaborador horas = HorasColabRepo.GetHorasColaborador(id.Value);
             if (horas == null)
             {
-                NotFound();
+                return NotFound();
             }
             return View(horas);
         }

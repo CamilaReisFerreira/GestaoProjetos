@@ -1,13 +1,13 @@
 ﻿@model GestaoProjetos.DTO.ColaboradorTarefa
 
 @{
-    ViewData["Title"] = "Details";
+    ViewData["Title"] = "Tarefas - Colaborador";
 }
 
-<h2>Details</h2>
+<h2>Detalhes</h2>
 
 <div>
-    <h4>ColaboradorTarefa</h4>
+    <h4>Tarefas - Colaborador</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -15,6 +15,18 @@
         </dt>
         <dd>
             @Html.DisplayFor(model => model.ID_ColaboradorTarefa)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Tarefa)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Tarefa.Descricao)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Colaborador)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Colaborador.Nome)
         </dd>
         <dt>
             @Html.DisplayNameFor(model => model.Horas_Estimadas)
@@ -25,6 +37,6 @@
     </dl>
 </div>
 <div>
-    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
-    <a asp-action="Index">Back to List</a>
+    @Html.ActionLink("Editar", "Edit", new { id = Model.ID_ColaboradorTarefa }) |
+    <a asp-action="Index">Voltar para a listagem</a>
 </div>

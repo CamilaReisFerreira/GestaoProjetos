@@ -20,7 +20,7 @@ namespace GestaoProjetos.DTO
         [Display(Name = "Data de Entrega")]
         public DateTime Data_Entrega { get; set; }
         public Projeto Projeto { get; set; }
-        public IList<ColaboradorTarefa> ColaboradorTarefa { get; set; }
+        //public IList<ColaboradorTarefa> ColaboradorTarefa { get; set; }
 
         public string Situacao_Exibir
         {

@@ -42,12 +42,12 @@ namespace GestaoProjetos.Controllers
         {
             if (id == null)
             {
-                BadRequest();
+                return BadRequest();
             }
             Colaborador colaborador = ColabRepo.GetColaborador(id.Value);
             if (colaborador == null)
             {
-                NotFound();
+                return NotFound();
             }
             ViewBag.Cargos = CargoRepo.ListarCargos();
             return View(colaborador);
@@ -69,12 +69,12 @@ namespace GestaoProjetos.Controllers
         {
             if (id == null)
             {
-                BadRequest();
+                return BadRequest();
             }
             Colaborador colaborador = ColabRepo.GetColaborador(id.Value);
             if (colaborador == null)
             {
-                NotFound();
+                return NotFound();
             }
             return View(colaborador);
         }

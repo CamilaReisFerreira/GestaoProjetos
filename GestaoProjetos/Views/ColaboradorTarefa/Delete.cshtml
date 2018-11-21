@@ -1,14 +1,13 @@
 ﻿@model GestaoProjetos.DTO.ColaboradorTarefa
 
 @{
-    ViewData["Title"] = "Delete";
+    ViewData["Title"] = "Tarefas - Colaborador";
 }
 
-<h2>Delete</h2>
+<h2>Excluir Tarefa - Colaborador</h2>
 
-<h3>Are you sure you want to delete this?</h3>
+<h3>Confirma a exclusão do registro?</h3>
 <div>
-    <h4>ColaboradorTarefa</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -16,6 +15,18 @@
         </dt>
         <dd>
             @Html.DisplayFor(model => model.ID_ColaboradorTarefa)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Tarefa)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Tarefa.Descricao)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Colaborador)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Colaborador.Nome)
         </dd>
         <dt>
             @Html.DisplayNameFor(model => model.Horas_Estimadas)
@@ -26,7 +37,9 @@
     </dl>
     
     <form asp-action="Delete">
-        <input type="submit" value="Delete" class="btn btn-default" /> |
-        <a asp-action="Index">Back to List</a>
+        @Html.AntiForgeryToken()
+        @Html.HiddenFor(model => model.ID_ColaboradorTarefa)
+        <input type="submit" value="Excluir" class="btn btn-default" /> |
+        <a asp-action="Index">Voltar para a listagem</a>
     </form>
 </div>

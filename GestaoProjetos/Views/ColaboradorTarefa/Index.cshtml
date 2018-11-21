@@ -1,13 +1,13 @@
 ﻿@model IEnumerable<GestaoProjetos.DTO.ColaboradorTarefa>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Tarefas - Colaboradores";
 }
 
-<h2>Index</h2>
+<h2>Tarefas - Colaboradores</h2>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Create">Novo</a>
 </p>
 <table class="table">
     <thead>
@@ -16,26 +16,38 @@
                 @Html.DisplayNameFor(model => model.ID_ColaboradorTarefa)
             </th>
             <th>
+                @Html.DisplayNameFor(model => model.Tarefa)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Colaborador)
+            </th>
+            <th>
                 @Html.DisplayNameFor(model => model.Horas_Estimadas)
             </th>
             <th></th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
+    @foreach (var item in Model) {
         <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.ID_ColaboradorTarefa)
             </td>
             <td>
+                @Html.DisplayFor(model => item.Tarefa.Descricao)
+            </td>
+            <td>
+                @Html.DisplayFor(model => item.Colaborador.Nome)
+            </td>
+            <td>
                 @Html.DisplayFor(modelItem => item.Horas_Estimadas)
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                @Html.ActionLink("Editar", "Edit", new { id = item.ID_ColaboradorTarefa }) |
+                @Html.ActionLink("Detalhes", "Details", new { id = item.ID_ColaboradorTarefa }) |
+                @Html.ActionLink("Excluir", "Delete", new { id = item.ID_ColaboradorTarefa })
             </td>
         </tr>
-}
+    }
     </tbody>
 </table>

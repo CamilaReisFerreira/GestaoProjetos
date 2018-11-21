@@ -45,12 +45,12 @@ namespace GestaoProjetos.Controllers
         {
             if (id == null)
             {
-                BadRequest();
+                return BadRequest();
             }
             Projeto projeto = ProjetoRepo.GetProjeto(id.Value);
             if (projeto == null)
             {
-                NotFound();
+                return NotFound();
             }
             return View(projeto);
         }
@@ -75,12 +75,12 @@ namespace GestaoProjetos.Controllers
         {
             if (id == null)
             {
-                BadRequest();
+                return BadRequest();
             }
             Projeto projeto = ProjetoRepo.GetProjeto(id.Value);
             if (projeto == null)
             {
-                NotFound();
+                return NotFound();
             }
             return View(projeto);
         }

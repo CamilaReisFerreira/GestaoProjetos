@@ -36,12 +36,12 @@ namespace GestaoProjetos.Controllers
         {
             if (id == null)
             {
-                BadRequest();
+                return BadRequest();
             }
             Cargo cargo = CargoRepo.GetCargo(id.Value);
             if (cargo == null)
             {
-                NotFound();
+                return NotFound();
             }
             return View(cargo);
         }
@@ -62,12 +62,12 @@ namespace GestaoProjetos.Controllers
         {
             if (id == null)
             {
-                BadRequest();
+                return BadRequest();
             }
             Cargo cargo = CargoRepo.GetCargo(id.Value);
             if (cargo == null)
             {
-                NotFound();
+                return NotFound();
             }
             return View(cargo);
         }

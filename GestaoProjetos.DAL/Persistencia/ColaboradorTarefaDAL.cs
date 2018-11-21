@@ -1,4 +1,5 @@
 ﻿using GestaoProjetos.DAL.Context;
+using GestaoProjetos.DAL.Entidades;
 using GestaoProjetos.DAL.Interfaces;
 using GestaoProjetos.DTO;
 using System.Collections.Generic;
@@ -17,17 +18,52 @@ namespace GestaoProjetos.DAL.Persistencia
 
         public void Add(ColaboradorTarefa item)
         {
-            throw new System.NotImplementedException();
+            var colaboradorTarefa = new ColaboradorTarefaDAO
+            {
+                Horas_Estimadas = item.Horas_Estimadas
+            };
+            if (item.Tarefa != null)
+                colaboradorTarefa.TarefaId_Tarefa = item.Tarefa.Id_Tarefa;
+            if (item.Colaborador != null)
+                colaboradorTarefa.ColaboradorId_Colaborador = item.Colaborador.Id_Colaborador;
+
+            _context.ColaboradoresTarefa.Add(colaboradorTarefa);
+            _context.SaveChanges();
         }
 
         public void Delete(long Id)
         {
-            throw new System.NotImplementedException();
+            ColaboradorTarefaDAO colaboradorTarefa = _context.ColaboradoresTarefa.FirstOrDefault(x => x.ID_ColaboradorTarefa == Id);
+
+            _context.ColaboradoresTarefa.Remove(colaboradorTarefa);
+            _context.SaveChanges();
         }
 
         public ColaboradorTarefa GetColaboradorTarefa(long Id)
         {
-            throw new System.NotImplementedException();
+            ColaboradorTarefaDAO colaboradorTarefa = _context.ColaboradoresTarefa.Find(Id);
+            var tarefa = colaboradorTarefa.TarefaId_Tarefa != null ? _context.Tarefas.Find(colaboradorTarefa.TarefaId_Tarefa) : null;
+            var colaborador = colaboradorTarefa.ColaboradorId_Colaborador != null ? _context.Colaboradores.Find(colaboradorTarefa.ColaboradorId_Colaborador) : null;
+            return colaboradorTarefa != null ?
+                new ColaboradorTarefa
+                {
+                    ID_ColaboradorTarefa = colaboradorTarefa.ID_ColaboradorTarefa,
+                    Horas_Estimadas = colaboradorTarefa.Horas_Estimadas,
+                    Tarefa = tarefa != null ? new Tarefa
+                    {
+                        Id_Tarefa = tarefa.Id_Tarefa,
+                        Descricao = tarefa.Descricao,
+                        Observacao = tarefa.Observacao,
+                        Situacao = tarefa.Situacao,
+                        Data_Abertura = tarefa.Data_Abertura,
+                        Data_Entrega = tarefa.Data_Entrega,
+                    } : null,
+                    Colaborador = colaborador != null ? new Colaborador
+                    {
+                        Id_Colaborador = colaborador.Id_Colaborador,
+                        Nome = colaborador.Nome
+                    } : null
+                } : null;
         }
 
         public IList<ColaboradorTarefa> ListarColaboradoresTarefa()
@@ -60,7 +96,14 @@ namespace GestaoProjetos.DAL.Persistencia
 
         public void Update(ColaboradorTarefa item)
         {
-            throw new System.NotImplementedException();
+            ColaboradorTarefaDAO colaboradorTarefa = _context.ColaboradoresTarefa.FirstOrDefault(x => x.ID_ColaboradorTarefa == item.ID_ColaboradorTarefa);
+            colaboradorTarefa.Horas_Estimadas = item.Horas_Estimadas;
+            if (item.Tarefa != null)
+                colaboradorTarefa.TarefaId_Tarefa = item.Tarefa.Id_Tarefa;
+            if (item.Colaborador != null)
+                colaboradorTarefa.ColaboradorId_Colaborador = item.Colaborador.Id_Colaborador;
+
+            _context.SaveChanges();
         }
     }
 }

@@ -1,21 +1,27 @@
 ﻿@model GestaoProjetos.DTO.ColaboradorTarefa
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Tarefas - Colaborador";
 }
 
-<h2>Create</h2>
+<h2>Cadastro de Tarefas - Colaborador</h2>
 
-<h4>ColaboradorTarefa</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="ID_ColaboradorTarefa" class="control-label"></label>
-                <input asp-for="ID_ColaboradorTarefa" class="form-control" />
-                <span asp-validation-for="ID_ColaboradorTarefa" class="text-danger"></span>
+                <label asp-for="Tarefa" class="control-label"></label>
+                <select asp-for="Tarefa.Id_Tarefa" class="form-control"
+                        asp-items="@(new SelectList(ViewBag.Tarefas,"Id_Tarefa","Descricao"))"></select>
+                <span asp-validation-for="Tarefa.Id_Tarefa" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Colaborador" class="control-label"></label>
+                <select asp-for="Colaborador.Id_Colaborador" class="form-control"
+                        asp-items="@(new SelectList(ViewBag.Colaboradores,"Id_Colaborador","Nome"))"></select>
+                <span asp-validation-for="Colaborador.Id_Colaborador" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Horas_Estimadas" class="control-label"></label>
@@ -23,14 +29,14 @@
                 <span asp-validation-for="Horas_Estimadas" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-default" />
+                <input type="submit" value="Cadastrar" class="btn btn-default" />
             </div>
         </form>
     </div>
 </div>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Index">Voltar para a listagem</a>
 </div>
 
 @section Scripts {

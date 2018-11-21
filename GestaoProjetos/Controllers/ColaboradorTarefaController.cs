@@ -5,7 +5,6 @@ using System.Threading.Tasks;
 using GestaoProjetos.DAL.Interfaces;
 using GestaoProjetos.DTO;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace GestaoProjetos.Controllers
 {
@@ -45,12 +44,12 @@ namespace GestaoProjetos.Controllers
         {
             if (id == null)
             {
-                BadRequest();
+                return BadRequest();
             }
             ColaboradorTarefa colaborador = ColabTarRepo.GetColaboradorTarefa(id.Value);
             if (colaborador == null)
             {
-                NotFound();
+                return NotFound();
             }
             ViewBag.Colaboradores = ColabRepo.ListarColaboradores();
             ViewBag.Tarefas = TarefaRepo.ListarTarefas();
@@ -73,12 +72,12 @@ namespace GestaoProjetos.Controllers
         {
             if (id == null)
             {
-                BadRequest();
+                return BadRequest();
             }
             ColaboradorTarefa colaborador = ColabTarRepo.GetColaboradorTarefa(id.Value);
             if (colaborador == null)
             {
-                NotFound();
+                return NotFound();
             }
             return View(colaborador);
         }
